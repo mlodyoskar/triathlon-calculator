@@ -1,8 +1,7 @@
+import { DisciplinesWithData, predefinedDistances } from "./triathlonData";
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
-
-type TriathlonDiscipline = "swim" | "bike" | "run";
-type DistanceUnit = "km" | "meters" | "miles";
+import { TriathlonDiscipline, DistanceUnit } from "./triathlonTypes";
 
 interface TriathlonState {
  distances: {
@@ -39,8 +38,17 @@ const { actions, reducer } = createSlice({
   setUnit(state, action: PayloadAction<{ discipline: TriathlonDiscipline; unit: DistanceUnit }>) {
    state.distances[action.payload.discipline].unit = action.payload.unit;
   },
+  setPredefinedDistance(state, action: PayloadAction<{ predefinedDistance: DisciplinesWithData }>) {
+   const distances = action.payload.predefinedDistance;
+   for (const discipline in distances) {
+    if (isTriathlonDiscipline(discipline)) {
+     state.distances[discipline].distance = distances[discipline].distance;
+     state.distances[discipline].unit = distances[discipline].unit;
+    }
+   }
+  },
  },
 });
 
-export const { setDistance, setUnit } = actions;
+export const { setDistance, setUnit, setPredefinedDistance } = actions;
 export { reducer as triathlonReducer };
