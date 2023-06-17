@@ -56,5 +56,5 @@ jobs:
      with:
       node-version: "18.x"
       cache: "pnpm"
-   - run: pnpm ci
+   - run: pnpm install
    - run: pnpm run test
