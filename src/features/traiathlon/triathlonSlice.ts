@@ -1,4 +1,4 @@
-import { DisciplinesWithData, predefinedDistances } from "./triathlonData";
+import { DisciplinesWithData } from "./triathlonData";
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { TriathlonDiscipline, DistanceUnit } from "./triathlonTypes";
@@ -12,11 +12,11 @@ export interface TriathlonState {
  };
 }
 
-export function isTriathlonDiscipline(value: any): value is TriathlonDiscipline {
+export function isTriathlonDiscipline(value: string): value is TriathlonDiscipline {
  return ["swim", "bike", "run"].includes(value);
 }
 
-export function isDistanceUnit(value: any): value is DistanceUnit {
+export function isDistanceUnit(value: string): value is DistanceUnit {
  return ["km", "meters", "miles"].includes(value);
 }
 

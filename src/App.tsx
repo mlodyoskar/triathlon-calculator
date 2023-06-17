@@ -22,16 +22,16 @@ function App() {
    <h1 className="text-4xl">Triathlon calculator</h1>
    <h2>Select distance</h2>
    <Stack direction="row" className="mb-4" gap={2}>
-    <Button variant="contained" onClick={(e) => handleSetPredefinedDistance("full")}>
+    <Button variant="contained" onClick={() => handleSetPredefinedDistance("full")}>
      Full
     </Button>
-    <Button variant="contained" onClick={(e) => handleSetPredefinedDistance("half")}>
+    <Button variant="contained" onClick={() => handleSetPredefinedDistance("half")}>
      Half
     </Button>
-    <Button variant="contained" onClick={(e) => handleSetPredefinedDistance("olympic")}>
+    <Button variant="contained" onClick={() => handleSetPredefinedDistance("olympic")}>
      Olympic (1/4)
     </Button>
-    <Button variant="contained" onClick={(e) => handleSetPredefinedDistance("sprint")}>
+    <Button variant="contained" onClick={() => handleSetPredefinedDistance("sprint")}>
      Sprint (1/8)
     </Button>
    </Stack>
