@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { TriathlonState, setDistance, setPredefinedDistance, triathlonReducer } from "./triathlonSlice";
-import { TriathlonDiscipline } from "./triathlonTypes";
-import { DisciplinesWithData } from "./triathlonData";
+import { TriathlonState, setDistance, setPredefinedDistance, triathlonReducer } from "./triathlon.slice";
+import { TriathlonDiscipline } from "./triathlon.types";
+import { DisciplinesWithData } from "./triathlon.data";
 
 const initialState: TriathlonState = {
  distances: {

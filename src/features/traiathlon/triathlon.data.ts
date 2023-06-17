@@ -1,4 +1,4 @@
-import { DistanceUnit, PredefinedDistanceName, TriathlonDiscipline } from "./triathlonTypes";
+import { DistanceUnit, PredefinedDistanceName, TriathlonDiscipline } from "./triathlon.types";
 
 export type DisciplinesWithData = {
  [key in TriathlonDiscipline]: {

@@ -1,8 +1,8 @@
 import { SelectChangeEvent } from "@mui/material/Select";
 import { useAppDispatch } from "../../app/hooks";
-import { predefinedDistances } from "./triathlonData";
-import { setPredefinedDistance, isTriathlonDiscipline, isDistanceUnit, setUnit, setDistance } from "./triathlonSlice";
-import { PredefinedDistanceName } from "./triathlonTypes";
+import { predefinedDistances } from "./triathlon.data";
+import { setPredefinedDistance, isTriathlonDiscipline, isDistanceUnit, setUnit, setDistance } from "./triathlon.slice";
+import { PredefinedDistanceName } from "./triathlon.types";
 
 const getPredefinedDistanceByName = (name: PredefinedDistanceName) => {
  return predefinedDistances[name];

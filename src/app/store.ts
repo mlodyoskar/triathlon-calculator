@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { counterReducer } from "../features/counter/counterSlice";
-import { triathlonReducer } from "../features/traiathlon/triathlonSlice";
+import { triathlonReducer } from "../features/traiathlon/triathlon.slice";
 
 export const store = configureStore({
  reducer: {

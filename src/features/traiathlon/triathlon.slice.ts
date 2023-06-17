@@ -1,7 +1,7 @@
-import { DisciplinesWithData } from "./triathlonData";
+import { DisciplinesWithData } from "./triathlon.data";
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
-import { TriathlonDiscipline, DistanceUnit } from "./triathlonTypes";
+import { TriathlonDiscipline, DistanceUnit } from "./triathlon.types";
 
 export interface TriathlonState {
  distances: {
