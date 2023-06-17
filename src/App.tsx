@@ -1,12 +1,12 @@
-import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { useAppSelector } from "./app/hooks";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { isDistanceUnit, isTriathlonDiscipline, setDistance, setUnit, setPredefinedDistance } from "./features/traiathlon/triathlonSlice";
-import { predefinedDistances } from "./features/traiathlon/triathlonData";
-import { PredefinedDistanceName } from "./features/traiathlon/triathlonTypes";
+import Select from "@mui/material/Select";
+import { useTriathlonDistance } from "./features/traiathlon/useTriathlonDistance";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 
 const units = [
  { id: "km", displayName: "Km" },
@@ -15,43 +15,34 @@ const units = [
 ] as const;
 
 function App() {
- const handleSetPredefinedDistance = (name: PredefinedDistanceName) => {
-  const distance = getPredefinedDistanceByName(name);
-  dispatch(setPredefinedDistance({ predefinedDistance: distance }));
- };
-
- const getPredefinedDistanceByName = (name: PredefinedDistanceName) => {
-  return predefinedDistances[name];
- };
- const handleSetUnit = (e: SelectChangeEvent, discipline: string) => {
-  if (!isTriathlonDiscipline(discipline) || !isDistanceUnit(e.target.value)) return;
-
-  dispatch(setUnit({ unit: e.target.value, discipline }));
- };
-
- const handleSetDistance = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, discipline: string) => {
-  if (!isTriathlonDiscipline(discipline)) return;
-  dispatch(setDistance({ discipline, distance: Number(e.target.value) }));
- };
-
- const dispatch = useAppDispatch();
+ const { handleSetDistance, handleSetPredefinedDistance, handleSetUnit } = useTriathlonDistance();
  const disciplnes = useAppSelector((state) => state.traithlon.distances);
  return (
   <div>
-   <h1>triathlon calculator</h1>
-   <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-    <button onClick={() => handleSetPredefinedDistance("full")}>Full</button>
-    <button onClick={() => handleSetPredefinedDistance("half")}>Half</button>
-    <button onClick={() => handleSetPredefinedDistance("olympic")}>Olympic (1/4)</button>
-    <button onClick={() => handleSetPredefinedDistance("sprint")}>Sprint (1/8)</button>
-
+   <h1 className="text-4xl">Triathlon calculator</h1>
+   <h2>Select distance</h2>
+   <Stack direction="row" className="mb-4" gap={2}>
+    <Button variant="contained" onClick={(e) => handleSetPredefinedDistance("full")}>
+     Full
+    </Button>
+    <Button variant="contained" onClick={(e) => handleSetPredefinedDistance("half")}>
+     Half
+    </Button>
+    <Button variant="contained" onClick={(e) => handleSetPredefinedDistance("olympic")}>
+     Olympic (1/4)
+    </Button>
+    <Button variant="contained" onClick={(e) => handleSetPredefinedDistance("sprint")}>
+     Sprint (1/8)
+    </Button>
+   </Stack>
+   <Stack direction="column" gap={2}>
     {Object.entries(disciplnes).map(([key, { distance, unit }]) => (
      <div style={{ display: "flex", gap: "20px" }} key={key}>
       <p>{key}</p>
-      <TextField label="Distance" variant="outlined" type="number" value={distance} onChange={(e) => handleSetDistance(e, key)} />
+      <TextField label="Distance" size="small" variant="outlined" type="number" value={distance} onChange={(e) => handleSetDistance(e, key)} />
       <FormControl>
        <InputLabel id="demo-simple-select-label">Matric</InputLabel>
-       <Select labelId="demo-simple-select-label" value={unit} label="Metric" onChange={(e) => handleSetUnit(e, key)}>
+       <Select labelId="demo-simple-select-label" size="small" value={unit} label="Metric" onChange={(e) => handleSetUnit(e, key)}>
         {units.map(({ id, displayName }) => (
          <MenuItem key={id} value={id}>
           {displayName}
@@ -61,6 +52,10 @@ function App() {
       </FormControl>
      </div>
     ))}
+   </Stack>
+   <hr></hr>
+   <div>
+    <h2>Target time or pace </h2>
    </div>
   </div>
  );

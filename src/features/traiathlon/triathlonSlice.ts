@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { TriathlonDiscipline, DistanceUnit } from "./triathlonTypes";
 
-interface TriathlonState {
+export interface TriathlonState {
  distances: {
   [key in TriathlonDiscipline]: {
    distance: number;
